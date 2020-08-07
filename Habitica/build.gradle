@@ -31,6 +31,7 @@ repositories {
     mavenLocal()
     mavenCentral()
     google()
+    maven { url 'https://dl.bintray.com/aimybox/aimybox-android-sdk/' }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     maven { url 'https://maven.fabric.io/public' }
 
@@ -42,6 +43,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.justai.aimybox:core:0.11.0'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //Networking
     implementation 'com.squareup.okhttp3:okhttp:3.14.2'

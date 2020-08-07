@@ -52,7 +52,7 @@ android:
     - 'google-gdk-license-.+'
 before_script:
   - cp habitica.properties.travis habitica.properties
-  - cp habitica.resources.example habitica.resources
+  - cp habitica.resources habitica.resources
   - cp Habitica/google-services.json.example Habitica/google-services.json
 script:
   - ./gradlew $TEST
