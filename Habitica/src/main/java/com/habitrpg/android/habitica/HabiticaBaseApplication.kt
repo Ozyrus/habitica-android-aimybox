@@ -33,6 +33,12 @@ import com.habitrpg.android.habitica.ui.activities.IntroActivity
 import com.habitrpg.android.habitica.ui.activities.LoginActivity
 import com.habitrpg.android.habitica.ui.helpers.MarkdownParser
 import com.habitrpg.android.habitica.ui.views.HabiticaIconsHelper
+import com.justai.aimybox.Aimybox
+import com.justai.aimybox.api.aimybox.AimyboxDialogApi
+import com.justai.aimybox.components.AimyboxProvider
+import com.justai.aimybox.core.Config
+import com.justai.aimybox.speechkit.google.platform.GooglePlatformSpeechToText
+import com.justai.aimybox.speechkit.google.platform.GooglePlatformTextToSpeech
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 import io.realm.Realm
@@ -41,10 +47,11 @@ import org.solovyev.android.checkout.Billing
 import org.solovyev.android.checkout.Cache
 import org.solovyev.android.checkout.Checkout
 import org.solovyev.android.checkout.PurchaseVerifier
+import java.util.*
 import javax.inject.Inject
 
 //contains all HabiticaApplicationLogic except dagger componentInitialisation
-abstract class HabiticaBaseApplication : MultiDexApplication() {
+abstract class HabiticaBaseApplication : MultiDexApplication(), AimyboxProvider {
     var refWatcher: RefWatcher? = null
     @Inject
     internal lateinit var lazyApiHelper: ApiClient
@@ -263,5 +270,19 @@ abstract class HabiticaBaseApplication : MultiDexApplication() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         }
+    }
+
+    override val aimybox: Aimybox by lazy { createAimybox(this)}
+
+    private fun createAimybox (context: Context): Aimybox {
+
+        val unitId = UUID.randomUUID().toString()
+
+        val textToSpeech = GooglePlatformTextToSpeech(context, Locale("Ru"))
+        val speechToText = GooglePlatformSpeechToText(context, Locale("Ru"))
+        val dialogApi = AimyboxDialogApi(
+                "YOUR KEY", unitId)
+
+        return Aimybox(Config.create(speechToText, textToSpeech, dialogApi))
     }
 }

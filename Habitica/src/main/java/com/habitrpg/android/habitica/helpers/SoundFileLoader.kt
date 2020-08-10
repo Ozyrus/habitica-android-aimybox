@@ -11,6 +11,8 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import okio.Okio
+import okio.buffer
+import okio.sink
 import java.io.File
 import java.io.IOException
 
@@ -52,8 +54,8 @@ class SoundFileLoader(private val context: Context) {
 
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
                             try {
-                                val sink = Okio.buffer(Okio.sink(file))
-                                sink.writeAll(response.body()!!.source())
+                                val sink = file.sink().buffer()
+                                sink.writeAll(response.body!!.source())
                                 sink.flush()
                                 sink.close()
                             } catch (io: IOException) {

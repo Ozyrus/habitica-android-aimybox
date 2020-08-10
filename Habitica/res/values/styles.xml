@@ -48,8 +48,28 @@
         <item name="android:navigationBarColor">@color/brand_50</item>
 
         <item name="searchViewStyle">@style/SearchViewStyle</item>
+        <item name="aimybox_assistantButtonTheme">@style/CustomAssistantButtonTheme</item>
+        <item name="aimybox_recognitionTheme">@style/CustomRecognitionWidgetTheme</item>
+        <item name="aimybox_responseTheme">@style/CustomResponseWidgetTheme</item>
+        <item name="aimybox_imageReplyTheme">@style/CustomImageReplyWidgetTheme</item>
+        <item name="aimybox_buttonReplyTheme">@style/CustomButtonReplyWidgetTheme</item>
     </style>
 
+    <style name="CustomAssistantButtonTheme" parent="DefaultAssistantTheme.AssistantButton">
+        <item name="aimybox_buttonMarginBottom">72dp</item>
+    </style>
+
+    <style name="CustomRecognitionWidgetTheme" parent="DefaultAssistantTheme.Widget.Recognition">
+    </style>
+
+    <style name="CustomResponseWidgetTheme" parent="DefaultAssistantTheme.Widget.Response">
+    </style>
+
+    <style name="CustomButtonReplyWidgetTheme" parent="DefaultAssistantTheme.Widget.ButtonReply">
+    </style>
+
+    <style name="CustomImageReplyWidgetTheme" parent="DefaultAssistantTheme.Widget.ImageReply">
+    </style>
 
     <style name="MainAppTheme.Red">
         <item name="colorPrimary">@color/red_5</item>

@@ -120,9 +120,9 @@ class ApiClientImpl//private OnHabitsAPIResult mResultListener;
                     if (BuildConfig.STAGING_KEY.isNotEmpty()) {
                         builder = builder.header("Authorization", "Basic " + BuildConfig.STAGING_KEY)
                     }
-                    val request = builder.method(original.method(), original.body())
+                    val request = builder.method(original.method, original.body)
                             .build()
-                    lastAPICallURL = original.url().toString()
+                    lastAPICallURL = original.url.toString()
                     chain.proceed(request)
                 }
                 .readTimeout(2400, TimeUnit.SECONDS)
@@ -189,7 +189,7 @@ class ApiClientImpl//private OnHabitsAPIResult mResultListener;
             val res = getErrorResponse(error)
             val status = error.code()
 
-            if (status == 404 || error.response().raw().request().url().toString().endsWith("/user/push-devices")) {
+            if (status == 404 || error.response().raw().request.url.toString().endsWith("/user/push-devices")) {
                 //workaround for an error that sometimes displays that the user already has this push device
                 return
             }

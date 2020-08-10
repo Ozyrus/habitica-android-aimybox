@@ -77,7 +77,6 @@
                                 android:adjustViewBounds="true"
                                 android:layout_centerVertical="true"
                                 android:layout_alignParentEnd="true"/>
-
                         </RelativeLayout>
                     </androidx.appcompat.widget.Toolbar>
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -132,6 +131,10 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true" />
+                <FrameLayout
+                    android:id="@+id/assistant_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
             </RelativeLayout>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
