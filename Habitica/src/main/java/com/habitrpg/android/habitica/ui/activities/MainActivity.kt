@@ -365,10 +365,9 @@ open class MainActivity : BaseActivity(), TutorialView.OnTutorialReaction {
     override fun onBackPressed() {
         val assistantFragment = (supportFragmentManager.findFragmentById(R.id.assistant_container)
                 as? AimyboxAssistantFragment)
-        if (assistantFragment?.onBackPressed() != true) {
+        if (assistantFragment?.onBackPressed() == true) {
             return
         }
-
         if (this.activeTutorialView != null) {
             this.removeActiveTutorialView()
         }
@@ -381,6 +380,8 @@ open class MainActivity : BaseActivity(), TutorialView.OnTutorialReaction {
             }
         }
     }
+
+
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == SELECT_CLASS_RESULT) {
